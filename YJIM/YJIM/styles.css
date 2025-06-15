@@ -1,0 +1,993 @@
+/* 全局样式 */
+:root {
+    --primary-color: #F5F5F5;
+    --secondary-color: #2A3F54;
+    --accent-color: #FF6B6B;
+    --text-color: #333;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* 头部区域样式 */
+.hero {
+    height: 100vh;
+    background: rgb(128, 128, 128);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    padding: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1.5s ease forwards;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.brand-name {
+    font-size: 33vh;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+    text-align: center;
+    width: 100%;
+    z-index: 3;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.pattern-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pattern-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+}
+
+.brand-name::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 4px;
+    background: white;
+    animation: lineGrow 1.5s ease forwards 1s;
+}
+
+.subtitle {
+    font-size: 3rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease forwards 1s;
+    margin-top: 2rem;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 1px;
+    color: #000000;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+}
+
+/* 动画关键帧 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes lineGrow {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* 添加标题悬停效果 */
+.brand-name:hover {
+    animation: titlePulse 1s ease infinite;
+}
+
+@keyframes titlePulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 导航栏样式 */
+.main-nav {
+    position: sticky;
+    top: 0;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #1E3A8A;
+}
+
+/* 主要内容区域样式 */
+.section {
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.section h2 {
+    text-align: center;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.product-card {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.product-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.product-card h3 {
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.product-card p {
+    padding: 0 1rem 1rem;
+    color: #666;
+    font-size: 0.9rem;
+    flex-grow: 1;
+    overflow-y: auto;
+    white-space: normal;
+    word-wrap: break-word;
+    height: calc(100% - 360px);
+}
+
+.color-blocks {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 5px;
+    z-index: 1;
+}
+
+.color-block {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+/* 页脚样式 */
+.footer {
+    background: #1a1a1a;
+    color: white;
+    padding: 4rem 2rem;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.footer-section h3 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover {
+    color: white;
+}
+
+/* 社交媒体图标样式 */
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2C3E50;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.social-icon i {
+    font-size: 1.5rem;
+}
+
+/* 为不同平台设置特定颜色 */
+.social-icon:nth-child(1) {
+    background: #07C160; /* 微信绿 */
+}
+
+.social-icon:nth-child(2) {
+    background: #E6162D; /* 微博红 */
+}
+
+.social-icon:nth-child(3) {
+    background: #000000; /* 抖音黑 */
+}
+
+.social-icon:nth-child(4) {
+    background: #FB7299; /* 哔哩哔哩粉色 */
+}
+
+.social-icon:hover:nth-child(1) {
+    background: #06AD56;
+}
+
+.social-icon:hover:nth-child(2) {
+    background: #D4152C;
+}
+
+.social-icon:hover:nth-child(3) {
+    background: #333333;
+}
+
+.social-icon:hover:nth-child(4) {
+    background: #E05A7E;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .brand-name {
+        font-size: 25vh; /* 在移动设备上稍微缩小字体 */
+    }
+    
+    .subtitle {
+        font-size: 2rem;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .section {
+        padding: 2rem 1rem;
+    }
+}
+
+.eight-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2rem;
+    width: 100%;
+    max-width: 100vw;
+    padding: 2rem;
+    margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+    .eight-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+    }
+}
+
+/* 韩式穿搭思路样式 */
+.korean-hero-section {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.korean-hero-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.korean-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.korean-slide.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.korean-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.1);
+    transition: transform 8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.korean-slide.active img {
+    transform: scale(1);
+}
+
+.korean-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+    z-index: 1;
+}
+
+.korean-slide.active .korean-overlay {
+    opacity: 1;
+}
+
+.korean-hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 10;
+    width: 100%;
+    padding: 0 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+    opacity: 0;
+    transform: translate(-50%, -40%);
+    transition: all 1s ease;
+}
+
+.korean-hero-content.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+.korean-hero-content h1 {
+    font-size: 3.5em;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #F8DADA 0%, #B3D1E1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
+    letter-spacing: 2px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.korean-hero-content h1:hover {
+    transform: scale(1.05);
+}
+
+.title-decoration {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #F8DADA, #B3D1E1);
+    border-radius: 3px;
+}
+
+.korean-hero-content .subtitle {
+    font-size: 1.8em;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1px;
+    margin-top: 1rem;
+    position: relative;
+    padding: 0 20px;
+}
+
+.korean-hero-content .subtitle::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 10px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.korean-hero-content .subtitle::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 10px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.korean-fade-in {
+    animation: fadeInUp 1s ease forwards;
+}
+
+/* 滚动箭头动画 */
+.korean-scroll-arrow {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.korean-scroll-arrow span {
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: rotate(45deg);
+    animation: scrollArrow 2s infinite;
+}
+
+.korean-scroll-arrow span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.korean-scroll-arrow span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* 卡片网格布局 */
+.korean-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.korean-content-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: var(--transition);
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.korean-content-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.korean-card-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+}
+
+.korean-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%; /* 调整图片垂直位置，聚焦在脸部 */
+    transition: var(--transition);
+}
+
+/* 为每个卡片单独设置图片位置 */
+.korean-card-grid .korean-content-card:nth-child(1) .korean-card-image img {
+    object-position: center 25%; /* 简约优雅图片位置 */
+}
+
+.korean-card-grid .korean-content-card:nth-child(2) .korean-card-image img {
+    object-position: center 20%; /* 层次搭配图片位置，调整到更靠上的位置 */
+}
+
+.korean-card-grid .korean-content-card:nth-child(3) .korean-card-image img {
+    object-position: center 15%; /* 色彩运用图片位置，调整到更靠上的位置 */
+}
+
+.korean-card-content {
+    padding: 1.5rem;
+}
+
+.korean-card-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+.korean-card-content p {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.korean-learn-more {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background-color: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: var(--transition);
+}
+
+.korean-learn-more:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* 动画关键帧 */
+@keyframes scrollArrow {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.slide-in-left {
+    animation: slideInLeft 1s ease forwards;
+}
+
+.slide-in-right {
+    animation: slideInRight 1s ease forwards;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 日系穿搭分享样式 */
+.japanese-style-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.japanese-content-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.japanese-content-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.japanese-content-card .card-image {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+}
+
+.japanese-content-card .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.japanese-content-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+.japanese-content-card .card-content {
+    padding: 1.5rem;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,1));
+}
+
+.japanese-content-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.japanese-content-card p {
+    color: #666;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.japanese-content-card .learn-more {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #f8f9fa;
+    color: #333;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.japanese-content-card .learn-more:hover {
+    background: #333;
+    color: white;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .japanese-style-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    
+    .japanese-content-card .card-image {
+        height: 250px;
+    }
+}
+
+/* 日系穿搭分享标题样式 */
+.japanese-style-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.japanese-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.title-line {
+    color: #2C3E50;
+    position: relative;
+    padding: 0 1rem;
+}
+
+.title-line::before,
+.title-line::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 2px;
+    background: #2C3E50;
+    opacity: 0.6;
+}
+
+.title-line::before {
+    left: -50px;
+}
+
+.title-line::after {
+    right: -50px;
+}
+
+.title-accent {
+    color: #E74C3C;
+    font-size: 2.5rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #6c757d;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .japanese-title {
+        font-size: 2.5rem;
+    }
+    
+    .title-accent {
+        font-size: 2rem;
+    }
+    
+    .title-line::before,
+    .title-line::after {
+        width: 20px;
+    }
+    
+    .title-line::before {
+        left: -30px;
+    }
+    
+    .title-line::after {
+        right: -30px;
+    }
+}
+
+/* 素人穿搭分享样式 */
+.amateur-style-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.amateur-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.title-decoration {
+    position: absolute;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #2C3E50, transparent);
+}
+
+.title-decoration.left {
+    left: 50%;
+    transform: translateX(-150px);
+}
+
+.title-decoration.right {
+    right: 50%;
+    transform: translateX(150px);
+}
+
+.title-main {
+    color: #2C3E50;
+    position: relative;
+    padding: 0 1rem;
+}
+
+.title-sub {
+    font-size: 1rem;
+    letter-spacing: 0.5em;
+    color: #666;
+    margin-top: 0.5rem;
+    font-weight: 300;
+}
+
+.amateur-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    aspect-ratio: 3/4;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover::after {
+    opacity: 1;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .amateur-title {
+        font-size: 2.5rem;
+    }
+    
+    .title-decoration.left {
+        transform: translateX(-100px);
+    }
+    
+    .title-decoration.right {
+        transform: translateX(100px);
+    }
+    
+    .amateur-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+} 
